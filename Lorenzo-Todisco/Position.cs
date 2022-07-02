@@ -1,4 +1,4 @@
-﻿namespace OOP_Project
+﻿namespace LorenzoTodisco
 {
     class Position
     {
