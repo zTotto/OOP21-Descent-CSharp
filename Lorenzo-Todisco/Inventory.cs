@@ -25,7 +25,7 @@
             return false;
         }
 
-        private void editQuantity(AbstractItem i, int val)
+        private void EditQuantity(AbstractItem i, int val)
         {
             foreach (Pair<AbstractItem, int> t in _inv)
             {
@@ -41,11 +41,11 @@
             }
         }
 
-        public void addItem(AbstractItem i)
+        public void AddItem(AbstractItem i)
         {
             if (this.Contains(i))
             {
-                this.editQuantity(i, 1);
+                this.EditQuantity(i, 1);
             }
             else
             {
@@ -57,7 +57,7 @@
         {
             if (this.Contains(i))
             {
-                this.editQuantity(i, -1);
+                this.EditQuantity(i, -1);
             }
         }
 

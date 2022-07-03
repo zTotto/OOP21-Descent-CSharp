@@ -18,12 +18,12 @@
             _pos = new Position(x, y);
         }
 
-        public void setPos(Position p)
+        public void SetPos(Position p)
         {
             _pos.SetPosition(p);
         }
 
-        public void setPos(int x, int y)
+        public void SetPos(int x, int y)
         {
             _pos.SetPosition(x, y);
         }
