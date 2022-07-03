@@ -21,6 +21,10 @@
                     _hp = 0;
                     _isDead = true;
                 }
+                else if (value > MaxHp)
+                {
+                    _hp = MaxHp;
+                }
                 else
                 {
                     _hp = value;
@@ -42,12 +46,12 @@
             _weapons.Add(startingWeapon);
         }
 
-        public Weapon getCurrentWeapon()
+        public Weapon GetCurrentWeapon()
         {
             return _weapons.ElementAt(_weaponIndex);
         }
 
-        private void setCurrentWeapon(int index)
+        private void SetCurrentWeapon(int index)
         {
             if (index >= 0 && index < _weapons.Count)
             {
@@ -55,29 +59,29 @@
             }
         }
 
-        public void switchWeapon()
+        public void SwitchWeapon()
         {
             if (_weaponIndex < _weapons.Count - 1)
             {
-                this.setCurrentWeapon(++_weaponIndex);
+                this.SetCurrentWeapon(++_weaponIndex);
             }
             else
             {
-                this.setCurrentWeapon(0);
+                this.SetCurrentWeapon(0);
             }
         }
 
         public Boolean canHit(Character enemy)
         {
-            return Math.Abs(enemy.Pos.X - this.Pos.X) <= getCurrentWeapon().Range &&
-                Math.Abs(enemy.Pos.Y - this.Pos.Y) <= getCurrentWeapon().Range && !IsDead;
+            return Math.Abs(enemy.Pos.X - this.Pos.X) <= GetCurrentWeapon().Range &&
+                Math.Abs(enemy.Pos.Y - this.Pos.Y) <= GetCurrentWeapon().Range && !IsDead;
         }
 
         public void hitEnemy(Character enemy)
         {
             if (canHit(enemy))
             {
-                enemy.CurrentHp = enemy.CurrentHp - getCurrentWeapon().Damage;
+                enemy.CurrentHp = enemy.CurrentHp - GetCurrentWeapon().Damage;
             }
         }
 
@@ -92,7 +96,20 @@
                 }
                 else
                 {
-                    this.Inv.addItem(i);
+                    this.Inv.AddItem(i);
+                }
+            }
+        }
+
+        public void UsePotionIfPresent()
+        {
+            foreach (Pair<AbstractItem, int> p in Inv.Inv)
+            {
+                if (p.First is HealthPotion && ((HealthPotion)p.First).CanUse(this))
+                {
+                    ((HealthPotion)p.First).Use(this);
+                    Inv.removeItem(p.First);
+                    return;
                 }
             }
         }
@@ -121,8 +138,8 @@
 
         public override string ToString()
         {
-            return $"Hp: {CurrentHp}/{MaxHp}, Weapon: {getCurrentWeapon().Name}, " +
-                $"Damage: {getCurrentWeapon().Damage}, Range: {getCurrentWeapon().Range}," +
+            return $"Hp: {CurrentHp}/{MaxHp}, Weapon: {GetCurrentWeapon().Name}, " +
+                $"Damage: {GetCurrentWeapon().Damage}, Range: {GetCurrentWeapon().Range}," +
                 $" Position: {Pos}";
         }
 
