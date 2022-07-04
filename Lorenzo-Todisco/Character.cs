@@ -2,8 +2,6 @@
 {
     internal class Character
     {
-        private Inventory _inv = new Inventory();
-        private List<Weapon> _weapons = new List<Weapon>();
         private int _weaponIndex = 0;
         private int _hp;
         private bool _isDead;
@@ -33,8 +31,8 @@
         }
         public int Speed { get; }
         public Position Pos { get; }
-        public Inventory Inv { get => _inv; }
-        public List<Weapon> Weapons { get => _weapons; }
+        public Inventory Inv { get; } = new Inventory();
+        public List<Weapon> Weapons { get; } = new List<Weapon>();
         public Boolean IsDead { get => _isDead; }
 
         public Character(Weapon startingWeapon, int maxHp, int speed)
@@ -43,17 +41,17 @@
             CurrentHp = maxHp;
             Speed = speed;
             Pos = new Position(0, 0);
-            _weapons.Add(startingWeapon);
+            Weapons.Add(startingWeapon);
         }
 
         public Weapon GetCurrentWeapon()
         {
-            return _weapons.ElementAt(_weaponIndex);
+            return Weapons.ElementAt(_weaponIndex);
         }
 
         private void SetCurrentWeapon(int index)
         {
-            if (index >= 0 && index < _weapons.Count)
+            if (index >= 0 && index < Weapons.Count)
             {
                 _weaponIndex = index;
             }
@@ -61,7 +59,7 @@
 
         public void SwitchWeapon()
         {
-            if (_weaponIndex < _weapons.Count - 1)
+            if (_weaponIndex < Weapons.Count - 1)
             {
                 this.SetCurrentWeapon(++_weaponIndex);
             }
@@ -71,28 +69,28 @@
             }
         }
 
-        public Boolean canHit(Character enemy)
+        public Boolean CanHit(Character enemy)
         {
             return Math.Abs(enemy.Pos.X - this.Pos.X) <= GetCurrentWeapon().Range &&
                 Math.Abs(enemy.Pos.Y - this.Pos.Y) <= GetCurrentWeapon().Range && !IsDead;
         }
 
-        public void hitEnemy(Character enemy)
+        public void HitEnemy(Character enemy)
         {
-            if (canHit(enemy))
+            if (CanHit(enemy))
             {
-                enemy.CurrentHp = enemy.CurrentHp - GetCurrentWeapon().Damage;
+                enemy.CurrentHp -= GetCurrentWeapon().Damage;
             }
         }
 
-        public void pickUpItem(AbstractItem i)
+        public void PickUpItem(AbstractItem i)
         {
             if (Math.Abs(i.Position.X - this.Pos.X) < Speed &&
                 Math.Abs(i.Position.Y - this.Pos.Y) < Speed && !IsDead)
             {
-                if (i is Weapon)
+                if (i is Weapon weapon)
                 {
-                    _weapons.Add((Weapon)i);
+                    Weapons.Add(weapon);
                 }
                 else
                 {
@@ -101,20 +99,25 @@
             }
         }
 
-        public void UsePotionIfPresent()
+        private void UsePotionByType(string type)
         {
             foreach (Pair<AbstractItem, int> p in Inv.Inv)
             {
-                if (p.First is HealthPotion && ((HealthPotion)p.First).CanUse(this))
+                if (p.First.GetType().Name.Contains(type) && ((AbstractConsumableItem)p.First).CanUse(this))
                 {
-                    ((HealthPotion)p.First).Use(this);
-                    Inv.removeItem(p.First);
+                    ((AbstractConsumableItem)p.First).Use(this);
+                    Inv.RemoveItem(p.First);
                     return;
                 }
             }
         }
 
-        public void move(Dir dir)
+        public void UseHealthPotion()
+        {
+            UsePotionByType("Health");
+        }
+
+        public void Move(Dir dir)
         {
             if (!IsDead)
             {
@@ -146,7 +149,7 @@
         public string WeaponsToString()
         {
             string msg = "\nWeapons: ";
-            foreach (Weapon weapon in _weapons)
+            foreach (Weapon weapon in Weapons)
             {
                 msg += $"\n{weapon.Name}, Dmg: {weapon.Damage}, Range: {weapon.Range}";
             }

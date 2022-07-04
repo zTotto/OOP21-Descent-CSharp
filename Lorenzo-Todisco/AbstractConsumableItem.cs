@@ -23,5 +23,10 @@
                 return (Name == i.Name) && (Modifier == i.Modifier);
             }
         }
+
+        public override int GetHashCode()
+        {
+            return base.GetHashCode();
+        }
     }
 }

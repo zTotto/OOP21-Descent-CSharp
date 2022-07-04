@@ -2,30 +2,29 @@
 {
     abstract class AbstractItem
     {
-        private Position _pos;
         public string Name { get; set; }
-        public Position Position { get => _pos; }
+        public Position Position { get; }
 
         public AbstractItem(string name, Position position)
         {
             Name = name;
-            _pos = position;
+            Position = position;
         }
 
         public AbstractItem(string name, int x, int y)
         {
             Name = name;
-            _pos = new Position(x, y);
+            Position = new Position(x, y);
         }
 
         public void SetPos(Position p)
         {
-            _pos.SetPosition(p);
+            Position.SetPosition(p);
         }
 
         public void SetPos(int x, int y)
         {
-            _pos.SetPosition(x, y);
+            Position.SetPosition(x, y);
         }
         public override bool Equals(object? obj)
         {

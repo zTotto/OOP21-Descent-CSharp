@@ -11,7 +11,7 @@
 
         public override void Use(Character pg)
         {
-            pg.CurrentHp = pg.CurrentHp + (int)(pg.MaxHp * Modifier);
+            pg.CurrentHp += (int)(pg.MaxHp * Modifier);
         }
     }
 }
