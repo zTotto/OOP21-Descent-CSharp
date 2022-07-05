@@ -18,16 +18,24 @@ namespace CorradoStortini
             IsMoving = true;
 
             if (direction == Direction.UP)
+            {
                 YPos++;
+            }
 
             if (direction == Direction.DOWN)
+            {
                 YPos--;
+            }
 
             if (direction == Direction.RIGHT)
+            {
                 XPos++;
+            }
 
             if (direction == Direction.LEFT)
+            {
                 XPos--;
+            }
 
             if (direction == Direction.STILL)
             {
