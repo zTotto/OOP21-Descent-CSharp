@@ -1,4 +1,4 @@
-﻿namespace Corrado_Stortini
+﻿namespace CorradoStortini
 {
     /// <summary>
     /// Enumerator for the keys of the keyboard

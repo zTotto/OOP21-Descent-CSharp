@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Reflection;
 using System.Text;
 
-namespace Corrado_Stortini
+namespace CorradoStortini
 {
     class KeyBindingAttr : Attribute
     {
