@@ -4,6 +4,7 @@
     {
         private int _weaponIndex = 0;
         private int _hp;
+        private int _mana;
         private bool _isDead;
         public int MaxHp { get; }
         public int CurrentHp
@@ -26,6 +27,29 @@
                 else
                 {
                     _hp = value;
+                }
+            }
+        }
+        public int MaxMana { get; set; }
+        public int CurrentMana
+        {
+            get
+            {
+                return _mana;
+            }
+            set
+            {
+                if (value <= 0)
+                {
+                    _mana = 0;
+                }
+                else if (value > MaxMana)
+                {
+                    _mana = MaxMana;
+                }
+                else
+                {
+                    _mana = value;
                 }
             }
         }
