@@ -4,6 +4,9 @@ using System.Text;
 
 namespace CorradoStortini
 {
+    /// <summary>
+    /// Class that model a character
+    /// </summary>
     public class Character
     {
         public int XPos { get; private set; }
@@ -12,7 +15,10 @@ namespace CorradoStortini
 
         public bool IsMoving { get; private set; }
 
-
+        /// <summary>
+        /// Method that move the character based on a specified direction
+        /// </summary>
+        /// <param name="direction">Direction the character will follow</param>
         public void MoveTo(Direction direction)
         {
             IsMoving = true;
