@@ -1,6 +1,6 @@
 ﻿namespace LorenzoTodisco
 {
-    internal class Character
+    public class Character
     {
         private int _weaponIndex = 0;
         private int _hp;

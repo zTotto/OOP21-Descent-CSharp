@@ -1,6 +1,6 @@
 ﻿namespace LorenzoTodisco
 {
-    enum Dir
+    public enum Dir
     {
         Right,
         Left,

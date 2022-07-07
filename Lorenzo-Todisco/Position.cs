@@ -1,6 +1,6 @@
 ﻿namespace LorenzoTodisco
 {
-    class Position
+    public class Position
     {
         public float X { get; set; }
         public float Y { get; set; }

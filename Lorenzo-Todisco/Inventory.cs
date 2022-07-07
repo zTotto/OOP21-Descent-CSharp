@@ -1,6 +1,6 @@
 ﻿namespace LorenzoTodisco
 {
-    class Inventory
+    public class Inventory
     {
         public List<Pair<AbstractItem, int>> Inv { get; } = new List<Pair<AbstractItem, int>>();
 

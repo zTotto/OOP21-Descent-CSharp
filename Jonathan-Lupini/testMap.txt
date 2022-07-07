@@ -1,0 +1,10 @@
+﻿9 9
+XXXXXXXXX
+X*******X
+X*******X
+X***X***X
+X*H*X*M*X
+X***x***X
+X*******X
+X*******X
+XXXXXXXXX

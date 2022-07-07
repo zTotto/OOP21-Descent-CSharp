@@ -1,6 +1,6 @@
 ﻿namespace LorenzoTodisco
 {
-    abstract class AbstractItem
+    public abstract class AbstractItem
     {
         public string Name { get; set; }
         public Position Position { get; }

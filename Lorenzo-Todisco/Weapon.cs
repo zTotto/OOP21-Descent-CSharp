@@ -1,6 +1,6 @@
 ﻿namespace LorenzoTodisco
 {
-    class Weapon : AbstractItem
+    public class Weapon : AbstractItem
     {
 
         public int Damage { get; set; }
