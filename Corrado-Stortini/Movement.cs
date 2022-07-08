@@ -21,9 +21,6 @@ namespace CorradoStortini
         }
 
         /// <inheritdoc />
-        public void ExecuteCommand(Character character)
-        {
-            character.MoveTo(_direction);
-        }
+        public void ExecuteCommand(Character character) => character.MoveTo(_direction);
     }
 }

@@ -1,7 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Reflection;
-using System.Text;
 
 namespace CorradoStortini
 {
@@ -14,8 +12,8 @@ namespace CorradoStortini
         /// <param name="name">Name of an Action (or KeyBinding)</param>
         internal KeyBindingAttr(Keys key, string name)
         {
-            this.Key = key;
-            this.Name = name;
+            Key = key;
+            Name = name;
         }
 
         public Keys Key { get; set; }
@@ -29,22 +27,14 @@ namespace CorradoStortini
         /// </summary>
         /// <param name="action">Action of which is wanted to get the key</param>
         /// <returns>The key of the passed action</returns>
-        public static Keys GetKey(this KeyBinding action)
-        {
-            KeyBindingAttr attr = GetAttr(action);
-            return attr.Key;
-        }
+        public static Keys GetKey(this KeyBinding action) => GetAttr(action).Key;
 
         /// <summary>
         ///   This method is called to change the key of the associated action
         /// </summary>
         /// <param name="action">Action of which is wanted to change the key</param>
         /// <param name="newKey">New key that will be associated to the action</param>
-        public static void SetKey(this KeyBinding action, Keys newKey)
-        {
-            KeyBindingAttr attr = GetAttr(action);
-            attr.Key = newKey;
-        }
+        public static void SetKey(this KeyBinding action, Keys newKey) => GetAttr(action).Key = newKey;
 
 
         /// <summary>
@@ -52,21 +42,11 @@ namespace CorradoStortini
         /// </summary>
         /// <param name="action">Action of which is wanted to know the name</param>
         /// <returns>The name of the passed action</returns>
-        public static string GetName(this KeyBinding action)
-        {
-            KeyBindingAttr attr = GetAttr(action);
-            return attr.Name;
-        }
+        public static string GetName(this KeyBinding action) => GetAttr(action).Name;
 
-        private static KeyBindingAttr GetAttr(KeyBinding p)
-        {
-            return (KeyBindingAttr)Attribute.GetCustomAttribute(ForValue(p), typeof(KeyBindingAttr));
-        }
+        private static KeyBindingAttr GetAttr(KeyBinding p) => (KeyBindingAttr)Attribute.GetCustomAttribute(ForValue(p), typeof(KeyBindingAttr));
 
-        private static MemberInfo ForValue(KeyBinding p)
-        {
-            return typeof(KeyBinding).GetField(Enum.GetName(typeof(KeyBinding), p));
-        }
+        private static MemberInfo ForValue(KeyBinding p) => typeof(KeyBinding).GetField(Enum.GetName(typeof(KeyBinding), p));
     }
 
     public enum KeyBinding

@@ -15,6 +15,16 @@ namespace CorradoStortini
 
         public bool IsMoving { get; private set; }
 
+        internal int GetCurrentMana()
+        {
+            throw new NotImplementedException();
+        }
+
+        internal void DecreaseCurrentMana(int manaCost)
+        {
+            throw new NotImplementedException();
+        }
+
         /// <summary>
         /// Method that move the character based on a specified direction
         /// </summary>
@@ -23,16 +33,18 @@ namespace CorradoStortini
         {
             IsMoving = true;
 
-            if (direction == Direction.UP)
-            {
-                YPos++;
-            }
+            ChangeY(direction);
 
-            if (direction == Direction.DOWN)
-            {
-                YPos--;
-            }
+            ChangeX(direction);
 
+            if (direction == Direction.STILL)
+            {
+                IsMoving = false;
+            }
+        }
+
+        private void ChangeX(Direction direction)
+        {
             if (direction == Direction.RIGHT)
             {
                 XPos++;
@@ -42,10 +54,18 @@ namespace CorradoStortini
             {
                 XPos--;
             }
+        }
 
-            if (direction == Direction.STILL)
+        private void ChangeY(Direction direction)
+        {
+            if (direction == Direction.UP)
             {
-                IsMoving = false;
+                YPos++;
+            }
+            
+            if (direction == Direction .DOWN)
+            {
+                YPos--;
             }
         }
     }
