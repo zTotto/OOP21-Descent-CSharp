@@ -23,7 +23,7 @@ namespace CorradoStortini
         /// <inheritdoc/>
         public void ExecuteCommand(Character character)
         {
-            if(character.GetCurrentMana() >= ManaCost && ExecuteSkill(character))
+            if (character.Mana >= ManaCost && ExecuteSkill(character))
             {
                 character.DecreaseCurrentMana(ManaCost);
             }

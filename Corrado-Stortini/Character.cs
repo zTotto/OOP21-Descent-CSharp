@@ -15,15 +15,40 @@ namespace CorradoStortini
 
         public bool IsMoving { get; private set; }
 
-        internal int GetCurrentMana()
+        private int _mana;
+
+        public int MaxMana { get; set; }
+
+        public int Mana 
         {
-            throw new NotImplementedException();
+            get => _mana;
+            set { 
+                if (value < 0)
+                {
+                    _mana = 0;
+                }
+                else if (value > MaxMana)
+                {
+                    _mana = MaxMana;
+                }
+                else
+                {
+                    _mana = value;
+                }
+            } 
         }
 
-        internal void DecreaseCurrentMana(int manaCost)
-        {
-            throw new NotImplementedException();
-        }
+        /// <summary>
+        /// Decreases the current mana of the character of the specified value.
+        /// </summary>
+        /// <param name="manaCost">Value of how much the current mana should be decreased</param>
+        public void DecreaseCurrentMana(int manaCost) => Mana -= manaCost;
+
+        /// <summary>
+        /// Increases the current mana of the character of the specified value.
+        /// </summary>
+        /// <param name="manaCost">Value of how much the current mana should be increased</param>
+        public void IncreaseCurrentMana(int manaCost) => Mana += manaCost;
 
         /// <summary>
         /// Method that move the character based on a specified direction
