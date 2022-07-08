@@ -38,6 +38,27 @@ namespace CorradoStortini
             } 
         }
 
+        public int Level { get; private set; }
+
+        public int Speed { get; set; }
+
+        public int InitialSpeed { get; }
+
+        /// <summary>
+        /// Increase the speed of the character by a passed value
+        /// </summary>
+        /// <param name="addedSpeed">Value of which the speed will be increased</param>
+        /// <returns>True if the speed has been increased</returns>
+        public bool IncreaseSpeed(int addedSpeed)
+        {
+            if (Level >= (int)LevelsToSkill.SPEEDUP)
+            {
+                Speed += addedSpeed;
+                return true;
+            }
+            return false;
+        }
+
         /// <summary>
         /// Decreases the current mana of the character of the specified value.
         /// </summary>
@@ -49,6 +70,11 @@ namespace CorradoStortini
         /// </summary>
         /// <param name="manaCost">Value of how much the current mana should be increased</param>
         public void IncreaseCurrentMana(int manaCost) => Mana += manaCost;
+
+        /// <summary>
+        /// Increment the level of the character by one
+        /// </summary>
+        public void IncrementLevel() => Level++;
 
         /// <summary>
         /// Method that move the character based on a specified direction
