@@ -1,43 +1,35 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Drawing;
 using System.Text;
-using System.Threading.Tasks;
-using System.Drawing;
-using LorenzoTodisco;
 
-namespace JonathanLupini
+namespace Jonathan_Lupini.Tasks.Supporting
 {
-    public class start
-    {
-        public static void Main(string[] args)
-        {
-            String mapPath = @"C:\Users\jonat\Desktop\Coding\C#\OOP21-Descent-CSharp\Jonathan-Lupini\testMap.txt";
-            Map map = new Map(mapPath);
-            MapManager.printMap(map);
-        }
-    }
-   
     public class Map
     {
         private readonly string _mapPath;
-        public int Columns { get ; }
+        public int Columns { get; }
         public int Rows { get; }
-        public Dictionary<Point, char> mapStatus { get; }
+        public Dictionary<Point, char> MapStatus { get; }
 
-        public Map(String path)
+        public Map(string path)
         {
             _mapPath = path;
             var (width, height) = MapManager.MapSize(_mapPath);
             Columns = height;
             Rows = width;
-            mapStatus = MapManager.readMap(_mapPath);
+            MapStatus = MapManager.readMap(_mapPath);
+        }
+
+        public bool IsWall(Point point)
+        {
+            if (!MapStatus.ContainsKey(point)) return false;
+            if (MapStatus[point] == 'X') return true;
+            return false;
         }
 
     }
     public static class MapManager
-    {   
-        public static Dictionary<Point, char> readMap(String path)
+    {
+        public static Dictionary<Point, char> readMap(string path)
         {
             var stream = File.OpenRead(path);
             var reader = new StreamReader(stream, Encoding.UTF8);
@@ -59,19 +51,19 @@ namespace JonathanLupini
             return dict;
         }
 
-        public static void printMap(Map map)
+        public static void PrintMap(Map map)
         {
             for (int y = 0; y < map.Rows; y++)
             {
                 for (int x = 0; x < map.Columns; x++)
                 {
-                    Console.Write(map.mapStatus[new Point(x, y)]);
+                    Console.Write(map.MapStatus[new Point(x, y)]);
                 }
                 Console.WriteLine(" ");
             }
         }
 
-        public static Point? findCharacter(Dictionary<Point, char> dict, int size, char character)
+        public static Point? FindCharacter(Dictionary<Point, char> dict, int size, char character)
         {
             for (int y = 1; y < size - 1; y++)
             {
@@ -84,14 +76,14 @@ namespace JonathanLupini
             return null;
         }
 
-        public static Tuple<int, int> MapSize(String path)
+        public static Tuple<int, int> MapSize(string path)
         {
             var stream = File.OpenRead(path);
             var reader = new StreamReader(stream, Encoding.UTF8);
             var dict = new Dictionary<Point, char>();
-            var columns = Char.GetNumericValue((char)reader.Read());
-            var useless = (int)reader.Read();
-            var rows = Char.GetNumericValue((char)reader.Read());
+            var columns = char.GetNumericValue((char)reader.Read());
+            var useless = reader.Read();
+            var rows = char.GetNumericValue((char)reader.Read());
             return new Tuple<int, int>((int)columns, (int)rows);
         }
     }

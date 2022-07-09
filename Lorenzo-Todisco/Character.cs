@@ -33,7 +33,7 @@
         public Position Pos { get; }
         public Inventory Inv { get; } = new Inventory();
         public List<Weapon> Weapons { get; } = new List<Weapon>();
-        public Boolean IsDead { get => _isDead; }
+        public bool IsDead { get => _isDead; }
 
         public Character(Weapon startingWeapon, int maxHp, int speed)
         {
@@ -69,7 +69,7 @@
             }
         }
 
-        public Boolean CanHit(Character enemy)
+        public bool CanHit(Character enemy)
         {
             return Math.Abs(enemy.Pos.X - this.Pos.X) <= GetCurrentWeapon().Range &&
                 Math.Abs(enemy.Pos.Y - this.Pos.Y) <= GetCurrentWeapon().Range && !IsDead;
