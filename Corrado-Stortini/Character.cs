@@ -21,8 +21,11 @@ namespace CorradoStortini
             InitialSpeed = initialSpeed;
             Speed = InitialSpeed;
             Level = 1;
+            NumHealthPotion = 0;
+            NumManaPotion = 0;
         }
 
+        #region Stats
         public int XPos { get; private set; }
 
         public int YPos { get; private set; }
@@ -82,6 +85,12 @@ namespace CorradoStortini
             }
         }
 
+        public int NumHealthPotion { get; set; }
+        public int NumManaPotion { get; set; }
+
+        #endregion
+
+        #region Skill and Level
         /// <summary>
         /// Skill: Heal the character.
         /// </summary>
@@ -128,7 +137,9 @@ namespace CorradoStortini
         /// Increment the level of the character by one
         /// </summary>
         public void IncrementLevel() => Level++;
+        #endregion
 
+        #region Move
         /// <summary>
         /// Method that move the character based on a specified direction
         /// </summary>
@@ -172,5 +183,30 @@ namespace CorradoStortini
                 YPos--;
             }
         }
+        #endregion
+
+        #region Potions
+        /// <summary>
+        /// If the character has health potions, use one of them
+        /// </summary>
+        public void UseHealthPotion()
+        {
+            if(NumHealthPotion > 0)
+            {
+                NumHealthPotion--;
+            }
+        }
+
+        /// <summary>
+        /// If the character has mana potions, use one of them
+        /// </summary>
+        public void UseManaPotion()
+        {
+            if (NumManaPotion > 0)
+            {
+                NumManaPotion--;
+            }
+        }
+        #endregion
     }
 }
