@@ -111,7 +111,8 @@ namespace Jonathan_Lupini.Tests
             Assert.IsFalse(IsCloser(previousPos, _mob.Position, _hero.Position)); //mob is adjacent to hero, can't get any closer
         }
 
-        private bool IsCloser(Point previousPos, Point currentPosition, Point targetPosition)
+
+        private static bool IsCloser(Point previousPos, Point currentPosition, Point targetPosition)
         {
             var oldDistanceX = Math.Abs(targetPosition.X - previousPos.X);
             var oldDistanceY = Math.Abs(targetPosition.Y - previousPos.Y);

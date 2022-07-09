@@ -19,8 +19,6 @@ namespace Jonathan_Lupini.Tasks.Supporting
             var hero = new Character(new Point(6, 4), 'H');
             level.Characters.Add(hero);
             level.Characters.Add(mob);
-            level.PrintLevel();
-            Console.WriteLine("Is hero seen : " + LineOfSight.IsTargetSeen(level, mob, hero));
             while (true)
             {
 
