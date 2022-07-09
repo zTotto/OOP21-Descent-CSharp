@@ -3,6 +3,9 @@ using NUnit.Framework;
 
 namespace Jonathan_Lupini.Tasks.Supporting
 {
+    /// <summary>
+    /// Class modeling a Game Character
+    /// </summary>
     public class Character
     {
         public Point Position { get; set; }
@@ -18,16 +21,10 @@ namespace Jonathan_Lupini.Tasks.Supporting
             Symbol = symbol;
         }
 
-        public void Move(Point targetPos)
-        {
-            Position = targetPos;
-        }
-
-        public void Move(Direction dir)
-        {
-            Position = DirToPos(dir);
-        }
-
+        /// <summary>
+        /// Return the Point representing the position fo the character if
+        /// he were to move in the given direction.
+        /// </summary>
         public Point DirToPos(Direction dir)
         {
             var x = Position.X;
@@ -42,11 +39,19 @@ namespace Jonathan_Lupini.Tasks.Supporting
                 _ => Position
             };
         }
+
+        /// <summary>
+        /// This character deals damage to target character.
+        /// </summary>
         public void Attack(Character enemy)
         {
             enemy.Hp -= Damage;
         }
 
+        /// <summary>
+        /// Returns true if this character is adjacent to target character
+        /// false otherwise
+        /// </summary>
         public bool IsInRange(Character target)
         {
             var x = Position.X;
@@ -58,6 +63,9 @@ namespace Jonathan_Lupini.Tasks.Supporting
 
     }
 
+    /// <summary>
+    /// Class modeling a Mob, it extends the Character class.
+    /// </summary>
     public class Mob : Character
     {
         private readonly IPathfinding pathfinding = new SimplePathfinding();
@@ -65,6 +73,10 @@ namespace Jonathan_Lupini.Tasks.Supporting
         {
         }
 
+        /// <summary>
+        /// Method called every time the game is updated, it decides if the mob
+        /// should attack or move.
+        /// </summary>
         public void Update(Level level)
         {
             Character hero = level.GetCharacter('H') ?? throw new InvalidOperationException();

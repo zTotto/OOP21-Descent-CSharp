@@ -2,6 +2,9 @@
 
 namespace Jonathan_Lupini.Tasks.Supporting
 {
+    /// <summary>
+    /// Class modeling a level of the game.
+    /// </summary>
     public class Level
     {
         public Map Map { get; }
@@ -11,23 +14,28 @@ namespace Jonathan_Lupini.Tasks.Supporting
             Map = map;
         }
 
-        public bool ValidMovement(Point pos)
+        /// <summary>
+        /// Returns True if the given point isn't a wall and isn't already occupied by
+        /// another character, false otherwise.
+        /// </summary>
+        public bool ValidMovement(Character pg, Direction dir)
         {
-            if (Map.IsWall(pos)) return false;
-            if (IsCharacter(pos)) return false;
+            if (Map.IsWall(pg.DirToPos(dir))) return false;
+            if (IsCharacter(pg.DirToPos(dir))) return false;
             return true;
         }
 
-        public bool ValidMovement(Character pg, Direction dir)
-        {
-            return ValidMovement(pg.DirToPos(dir));
-        }
-
+        /// <summary>
+        /// Returns True if a given point is occupied by a character.
+        /// </summary>
         private bool IsCharacter(Point pos)
         {
             return Characters.Any(pg => pg.Position == pos);
         }
 
+        /// <summary>
+        /// Prints the game level to the console.
+        /// </summary>
         public void PrintLevel()
         {
             for (int y = 0; y < Map.Rows; y++)
@@ -49,6 +57,10 @@ namespace Jonathan_Lupini.Tasks.Supporting
                 Console.WriteLine(" ");
             }
         }
+
+        /// <summary>
+        /// Prints the game level to the console with lines of sight drawn.
+        /// </summary>
         public void PrintLevelWithSight(Character c1, Character c2)
         {
             for (int y = 0; y < Map.Rows; y++)
@@ -77,6 +89,9 @@ namespace Jonathan_Lupini.Tasks.Supporting
             }
         }
 
+        /// <summary>
+        /// Returns a character that has a given symbol if present, returns null otherwise
+        /// </summary>
         public Character? GetCharacter(char symbol)
         {
             foreach (var pg in Characters)
