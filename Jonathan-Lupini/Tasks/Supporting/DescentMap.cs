@@ -2,7 +2,9 @@
 using System.Text;
 
 namespace Jonathan_Lupini.Tasks.Supporting
-{
+{   /// <summary>
+    /// Class that models a basic rpg map.
+    /// </summary>
     public class Map
     {
         private readonly string _mapPath;
@@ -19,6 +21,9 @@ namespace Jonathan_Lupini.Tasks.Supporting
             MapStatus = MapManager.readMap(_mapPath);
         }
 
+        /// <summary>
+        /// Returns true if a given point on the map is a wall, false otherwise.
+        /// </summary>
         public bool IsWall(Point point)
         {
             if (!MapStatus.ContainsKey(point)) return false;
@@ -27,8 +32,17 @@ namespace Jonathan_Lupini.Tasks.Supporting
         }
 
     }
+
+    /// <summary>
+    /// Utility class to load and analyze a map from a text file.
+    /// </summary>
     public static class MapManager
     {
+        /// <summary>
+        /// Utility method that reads a map from a given file path.
+        /// Returns a dictionary that associates a 2d point coordinate
+        /// to a character representing the point's content in the map.
+        /// </summary>
         public static Dictionary<Point, char> readMap(string path)
         {
             var stream = File.OpenRead(path);
@@ -51,6 +65,9 @@ namespace Jonathan_Lupini.Tasks.Supporting
             return dict;
         }
 
+        /// <summary>
+        /// Utility method that prints the map to the console.
+        /// </summary>
         public static void PrintMap(Map map)
         {
             for (int y = 0; y < map.Rows; y++)
@@ -63,19 +80,9 @@ namespace Jonathan_Lupini.Tasks.Supporting
             }
         }
 
-        public static Point? FindCharacter(Dictionary<Point, char> dict, int size, char character)
-        {
-            for (int y = 1; y < size - 1; y++)
-            {
-                for (int x = 1; x < size - 1; x++)
-                {
-                    var position = new Point(x, y);
-                    if (dict[position] == character) return position;
-                }
-            }
-            return null;
-        }
-
+        /// <summary>
+        /// Utility method to read the size of the map from a file.
+        /// </summary>
         public static Tuple<int, int> MapSize(string path)
         {
             var stream = File.OpenRead(path);
