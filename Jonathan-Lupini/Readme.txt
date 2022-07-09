@@ -2,4 +2,4 @@ Le classi reimplementate piu' o meno fedelmente sono quelle dell'AI perchè larg
 le altre (nella cartella Tasks.Supporting) sono classi necessarie per definire il dominio a cui applicare l'AI (e.g. Character, map...)
 
 Nella classe Controller c'è il metodo start che renderizza su console una demo del mob (M) che si muove randomicamente fino a quando vede l'eroe (H), 
-una volta visto l'eroe cerca di avvicinarsi e di ucciderlo.
+una volta visto l'eroe il mob cerca di avvicinarsi e di ucciderlo.
