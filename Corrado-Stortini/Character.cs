@@ -9,6 +9,20 @@ namespace CorradoStortini
     /// </summary>
     public class Character
     {
+        public Character(int maxMana, int maxHp, int initialSpeed)
+        {
+            XPos = 0;
+            YPos = 0;
+            IsMoving = false;
+            MaxMana = maxMana;
+            Mana = MaxMana;
+            MaxHp = maxHp;
+            Hp = MaxHp;
+            InitialSpeed = initialSpeed;
+            Speed = InitialSpeed;
+            Level = 1;
+        }
+
         public int XPos { get; private set; }
 
         public int YPos { get; private set; }
