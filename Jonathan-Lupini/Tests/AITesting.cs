@@ -30,17 +30,17 @@ namespace Jonathan_Lupini.Tests
         public void LineOfSightTest()
         {
             Assert.IsFalse(LineOfSight.IsTargetSeen(_level,_mob, _hero));
-            _mob.Move(Direction.Down);
+            _mob.Position = _mob.DirToPos(Direction.Down);
             Assert.IsFalse(LineOfSight.IsTargetSeen(_level, _mob, _hero));
-            _mob.Move(Direction.Down);
+            _mob.Position = _mob.DirToPos(Direction.Down);
             Assert.IsFalse(LineOfSight.IsTargetSeen(_level, _mob, _hero));
-            _mob.Move(Direction.Down);
+            _mob.Position = _mob.DirToPos(Direction.Down);
             Assert.IsTrue(LineOfSight.IsTargetSeen(_level, _mob, _hero));
-            _mob.Move(Direction.Right);
+            _mob.Position = _mob.DirToPos(Direction.Right);
             Assert.IsTrue(LineOfSight.IsTargetSeen(_level, _mob, _hero));
-            _mob.Move(Direction.Left);
+            _mob.Position = _mob.DirToPos(Direction.Left);
             Assert.IsTrue(LineOfSight.IsTargetSeen(_level, _mob, _hero));
-            _mob.Move(Direction.Left);
+            _mob.Position = _mob.DirToPos(Direction.Left);
             Assert.IsFalse(LineOfSight.IsTargetSeen(_level, _mob, _hero));
         }
 
@@ -48,19 +48,19 @@ namespace Jonathan_Lupini.Tests
         public void WallCollisionTest()
         {
             Assert.IsTrue(_level.ValidMovement(_mob, Direction.Right));
-            _mob.Move(Direction.Right);
+            _mob.Position = _mob.DirToPos(Direction.Right);
             Assert.IsFalse(_level.ValidMovement(_mob, Direction.Right));
             Assert.IsTrue(_level.ValidMovement(_mob, Direction.Up));
-            _mob.Move(Direction.Up);
+            _mob.Position = _mob.DirToPos(Direction.Up);
             Assert.IsTrue(_level.ValidMovement(_mob, Direction.Up));
-            _mob.Move(Direction.Up);
+            _mob.Position = _mob.DirToPos(Direction.Up);
             Assert.IsTrue(_level.ValidMovement(_mob, Direction.Up));
-            _mob.Move(Direction.Up);
+            _mob.Position = _mob.DirToPos(Direction.Up);
             Assert.IsFalse(_level.ValidMovement(_mob, Direction.Up));
             Assert.IsTrue(_level.ValidMovement(_mob, Direction.Left));
-            _mob.Move(Direction.Left);
+            _mob.Position = _mob.DirToPos(Direction.Left);
             Assert.IsTrue(_level.ValidMovement(_mob, Direction.Left));
-            _mob.Move(Direction.Left);
+            _mob.Position = _mob.DirToPos(Direction.Left);
             Assert.IsFalse(_level.ValidMovement(_mob, Direction.Left));
         }
 

@@ -50,25 +50,43 @@ namespace Jonathan_Lupini.Tasks
             if (!LineOfSight.IsTargetSeen(level, mob, hero))
             {
                 Direction dir = IPathfinding.RandomDirection();
-                if (level.ValidMovement(mob, dir)) mob.Move(dir);
+                if (level.ValidMovement(mob, dir)) mob.Position = mob.DirToPos(dir);
             }
 
             else if (herox > mobx)
             {
-                if (level.ValidMovement(mob, Direction.Right)) mob.Move(Direction.Right);
-                else if (heroy > moby && level.ValidMovement(mob, Direction.Down)) mob.Move(Direction.Down);
+                if (level.ValidMovement(mob, Direction.Right))
+                {
+                    mob.Position = mob.DirToPos(Direction.Right);
+                }
+                else if (heroy > moby && level.ValidMovement(mob, Direction.Down))
+                {
+                    mob.Position = mob.DirToPos(Direction.Down);
+                }
                 else UnstuckMob(mob, level);
             }
             else if (herox < mobx)
             {
-                if (level.ValidMovement(mob, Direction.Left)) mob.Move(Direction.Left);
-                else if (heroy > moby && level.ValidMovement(mob, Direction.Down)) mob.Move(Direction.Down);
+                if (level.ValidMovement(mob, Direction.Left))
+                {
+                    mob.Position = mob.DirToPos(Direction.Left);
+                }
+                else if (heroy > moby && level.ValidMovement(mob, Direction.Down))
+                {
+                    mob.Position = mob.DirToPos(Direction.Down);
+                }
                 else UnstuckMob(mob, level);
             }
             else
             {
-                if (heroy > moby && level.ValidMovement(mob, Direction.Down)) mob.Move(Direction.Down);
-                else if (level.ValidMovement(mob, Direction.Up)) mob.Move(Direction.Up);
+                if (heroy > moby && level.ValidMovement(mob, Direction.Down))
+                {
+                    mob.Position = mob.DirToPos(Direction.Down);
+                }
+                else if (level.ValidMovement(mob, Direction.Up))
+                {
+                    mob.Position = mob.DirToPos(Direction.Up);
+                }
                 else UnstuckMob(mob, level);
             }
         }
@@ -86,7 +104,7 @@ namespace Jonathan_Lupini.Tasks
                 dir = IPathfinding.RandomDirection();
                 if (level.ValidMovement(mob, dir))
                 {
-                    mob.Move(dir);
+                    mob.Position = mob.DirToPos(dir);
                 }
                 newPos = mob.Position;
             } while (newPos.Equals(startPos));
