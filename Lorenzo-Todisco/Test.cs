@@ -40,6 +40,25 @@ namespace LorenzoTodisco
             Character Mob = new Character(new Weapon("Fists", 10, 2, new Position(0, 0)), 100, 1);
             Hero.HitEnemy(Mob);
             Assert.AreEqual(Mob.CurrentHp, Mob.MaxHp - Hero.GetCurrentWeapon().Damage);
+            Hero.HitEnemy(Mob);
+            Hero.HitEnemy(Mob);
+            Hero.HitEnemy(Mob);
+            Hero.HitEnemy(Mob);
+            Assert.AreEqual(Mob.CurrentHp, 0);
+            Assert.IsTrue(Mob.IsDead);
+        }
+
+        [Test]
+        public void TestPotion()
+        {
+            Character Hero = new Character(new Weapon("Longsword", 23, 4, new Position(0, 0)), 100, 1);
+            Character Mob = new Character(new Weapon("Fists", 10, 2, new Position(0, 0)), 100, 1);
+            HealthPotion potion = new HealthPotion("Pozione", new Position(0, 0), 0.25f);
+            Mob.HitEnemy(Hero);
+            Assert.AreNotEqual(Hero.CurrentHp, Hero.MaxHp);
+            Hero.PickUpItem(potion);
+            Hero.UseHealthPotion();
+            Assert.AreEqual(Hero.CurrentHp, Hero.MaxHp);
         }
     }
 }
