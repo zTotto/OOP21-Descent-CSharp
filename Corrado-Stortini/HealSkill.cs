@@ -26,14 +26,7 @@ namespace CorradoStortini
         /// </summary>
         /// <param name="character">Character to be healed</param>
         /// <returns>True if the skill has been executed</returns>
-        protected override bool ExecuteSkill(Character character)
-        {
-            if(character.Hp < character.MaxHp)
-            {
-                return character.Heal(_hp);
-            }
-            return false;
-        }
+        protected override bool ExecuteSkill(Character character) => character.Hp < character.MaxHp && character.Heal(_hp);
 
         /// <summary>
         /// Don't need to be used with this skill, nothing is going back to its original state
