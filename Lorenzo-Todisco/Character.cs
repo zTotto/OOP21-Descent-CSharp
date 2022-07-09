@@ -6,7 +6,7 @@
         private int _hp;
         private int _mana;
         private bool _isDead;
-        public int MaxHp { get; }
+        public int MaxHp { get; set; }
         public int CurrentHp
         {
             get
@@ -33,10 +33,7 @@
         public int MaxMana { get; set; }
         public int CurrentMana
         {
-            get
-            {
-                return _mana;
-            }
+            get => _mana;
             set
             {
                 if (value <= 0)
@@ -53,6 +50,7 @@
                 }
             }
         }
+        public int Exp { get; set; }
         public int Speed { get; }
         public Position Pos { get; }
         public Inventory Inv { get; } = new Inventory();

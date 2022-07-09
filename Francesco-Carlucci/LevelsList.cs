@@ -17,15 +17,9 @@ namespace Francesco_Carlucci
             _counter = 0;
         }
 
-        public Level GetCurrentLevel()
-        {
-            return Levels[_counter];
-        }
+        public Level GetCurrentLevel() => Levels[_counter];
 
-        public bool HasNextLevel()
-        {
-            return _counter < Levels.Count - 1;
-        }
+        public bool HasNextLevel() => _counter < Levels.Count - 1;
 
         public Level GetNextLevel()
         {
@@ -36,10 +30,7 @@ namespace Francesco_Carlucci
             throw new NotSupportedException();
         }
 
-        public bool IsGameOver()
-        {
-            return !HasNextLevel();
-        }
+        public bool IsGameOver() => !HasNextLevel();
 
         public override string ToString()
         {

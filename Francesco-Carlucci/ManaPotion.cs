@@ -6,10 +6,7 @@ namespace Francesco_Carlucci
     {
         public ManaPotion(string name, Position position, float modifier) : base(name, position, modifier) { }
 
-        public override bool CanUse(Character pg)
-        {
-            return true;
-        }
+        public override bool CanUse(Character pg) => true;
 
         public override void Use(Character pg)
         {
