@@ -9,7 +9,6 @@ namespace CorradoStortini
     /// </summary>
     public class SpeedUpSkill : AbstractSkill
     {
-        private readonly int _initialSpeed;
         private readonly int _addedSpeed;
 
         /// <summary>
@@ -19,9 +18,8 @@ namespace CorradoStortini
         /// <param name="manaCost">Mana cost of the skill</param>
         /// <param name="initialSpeed">Initial speed of the character</param>
         /// <param name="addedSpeed">Speed to add to the character</param>
-        public SpeedUpSkill(int manaCost, int initialSpeed, int addedSpeed) : base(manaCost)
+        public SpeedUpSkill(int manaCost, int addedSpeed) : base(manaCost)
         {
-            _initialSpeed = initialSpeed;
             _addedSpeed = addedSpeed;
         }
 
@@ -32,13 +30,13 @@ namespace CorradoStortini
         /// <returns>True if the skill has been executed</returns>
         protected override bool ExecuteSkill(Character character)
         {
-            return character.Speed < _addedSpeed + _initialSpeed && character.IncreaseSpeed(_addedSpeed);
+            return character.Speed < _addedSpeed + character.InitialSpeed && character.IncreaseSpeed(_addedSpeed);
         }
 
         /// <summary>
         /// Reset the initial speed of the character when the skill finishes
         /// </summary>
         /// <param name="character">Target of the speed reset</param>
-        protected override void ResetInitialState(Character character) => character.Speed = _initialSpeed;
+        protected override void ResetInitialState(Character character) => character.Speed = character.InitialSpeed;
     }
 }

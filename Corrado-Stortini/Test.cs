@@ -76,6 +76,56 @@ namespace CorradoStortini
             Assert.AreEqual(character.Speed, 100);
 
             Assert.AreEqual(character.Level, 1);
+
+            _input.AddCommand(KeyBinding.INCREASES_SPEED, new SpeedUpSkill(10, 10));
+            _input.AddCommand(KeyBinding.HEAL, new HealSkill(10, 20));
+
+            //SpeedUp skill
+
+            //10 will be added to the speed of the character until the mana is enough.
+            //Normally the speed wouldn't increase if the user does not press the key of the skill, but that's something 
+            //that cannot be done because there is not a render method
+            //If the speed is increased, the next call of the executeCommand will turn back the speed to the initialSpeed
+            _input.HandleInput(KeyBinding.INCREASES_SPEED).ExecuteCommand(character);
+
+            //Level of the character is 1 so it cannot use the skill
+            Assert.AreEqual(character.Mana, 100);
+            Assert.AreEqual(character.Speed, 100);
+
+            character.IncrementLevel(); //Now the character is at level 2 and can use the skill IncreasesSpeed
+            Assert.AreEqual(character.Level, 2);
+
+            _input.HandleInput(KeyBinding.INCREASES_SPEED).ExecuteCommand(character);
+            Assert.AreEqual(character.Mana, 90);
+            Assert.AreEqual(character.Speed, 110);
+
+            _input.HandleInput(KeyBinding.INCREASES_SPEED).ExecuteCommand(character);
+            Assert.AreEqual(character.Mana, 90);
+            Assert.AreEqual(character.Speed, 100);
+
+            for (int i = 0; i < 18; i++)
+            {
+                _input.HandleInput(KeyBinding.INCREASES_SPEED).ExecuteCommand(character);
+            }
+
+            Assert.AreEqual(character.Mana, 0);
+            Assert.AreEqual(character.Speed, 100);
+
+            //The mana is at 0 so the character won't speed up anymore
+            _input.HandleInput(KeyBinding.INCREASES_SPEED).ExecuteCommand(character);
+            Assert.AreEqual(character.Mana, 0);
+            Assert.AreEqual(character.Speed, 100);
+
+            //Heal skill
+            character.Mana = character.MaxMana;
+            character.Hp = 50;
+
+            //The character is at level 2 so it cannot use the Heal skill
+            _input.HandleInput(KeyBinding.HEAL).ExecuteCommand(character);
+            Assert.AreEqual(character.Mana, character.MaxMana);
+            Assert.AreEqual(character.Hp, 50);
+
+
         }
     }
 }
