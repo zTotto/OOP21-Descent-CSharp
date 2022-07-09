@@ -6,7 +6,7 @@ namespace Jonathan_Lupini.Tasks.Working.Supporting
     /// The mob M moves randomly until it sees the hero H, it then tries
     /// to get closer until it can attack and kill him.
     /// </summary>
-    public class Controller
+    public class Demo
     {
         private const string MapPath =
             "testMap.txt";
