@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using LorenzoTodisco;
+﻿using LorenzoTodisco;
 
 namespace Francesco_Carlucci
 {
@@ -32,7 +27,7 @@ namespace Francesco_Carlucci
                 Weapon weapon = pg.GetCurrentWeapon();
                 weapon.Damage += (int)(weapon.Damage * Power.Value);
             }
-            if(Exp.HasValue)
+            if (Exp.HasValue)
             {
                 pg.Exp += Exp.Value;
             }
@@ -40,10 +35,10 @@ namespace Francesco_Carlucci
 
         public override string ToString()
         {
-            return "\nWearable item: " + Name + " [" + Position + "]"
-                + "\nHealth: " + (Health ?? 0)
-                + "\nPower: " + (Power ?? 0)
-                + "\nExp: " + (Exp ?? 0);
+            return $"\nWearable item: {Name} [{Position}]"
+                   + $"\nHealth: {Health ?? 0}"
+                   + $"\nPower: {Power ?? 0}"
+                   + $"\nExp: {Exp ?? 0}";
         }
 
         public class Builder
@@ -87,7 +82,7 @@ namespace Francesco_Carlucci
                 return this;
             }
 
-            public WearableItem build()
+            public WearableItem Build()
             {
                 if(_name == null || _position == null
                     || (!_health.HasValue && !_power.HasValue && !_exp.HasValue))
