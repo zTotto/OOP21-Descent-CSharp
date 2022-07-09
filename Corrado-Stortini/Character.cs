@@ -9,6 +9,20 @@ namespace CorradoStortini
     /// </summary>
     public class Character
     {
+        public Character(int maxMana, int maxHp, int initialSpeed)
+        {
+            XPos = 0;
+            YPos = 0;
+            IsMoving = false;
+            MaxMana = maxMana;
+            Mana = MaxMana;
+            MaxHp = maxHp;
+            Hp = MaxHp;
+            InitialSpeed = initialSpeed;
+            Speed = InitialSpeed;
+            Level = 1;
+        }
+
         public int XPos { get; private set; }
 
         public int YPos { get; private set; }
@@ -43,6 +57,45 @@ namespace CorradoStortini
         public int Speed { get; set; }
 
         public int InitialSpeed { get; }
+        public int MaxHp { get; set; }
+
+        private int _hp;
+
+        public int Hp 
+        {
+            get => _hp;
+
+            set 
+            {
+                if (value < 0)
+                {
+                    _hp = 0;
+                }
+                else if (value > MaxHp)
+                {
+                    _hp = MaxHp;
+                }
+                else
+                {
+                    _hp = value;
+                }
+            }
+        }
+
+        /// <summary>
+        /// Skill: Heal the character.
+        /// </summary>
+        /// <param name="hp">The amount of hp added to the character</param>
+        /// <returns>True if the character can use this skill</returns>
+        public bool Heal(int hp)
+        {
+            if (Level >= (int)LevelsToSkill.HEAL)
+            {
+                this.Hp += hp;
+                return true;
+            }
+            return false;
+        }
 
         /// <summary>
         /// Increase the speed of the character by a passed value
