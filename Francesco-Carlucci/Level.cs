@@ -1,22 +1,31 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿
 using LorenzoTodisco;
 
 namespace Francesco_Carlucci
 {
-    public interface Level
+    public class Level
     {
-        public Level AddItems();
+        public List<AbstractItem> Items { get; }
+        public Position DoorPosition { get; set; }
 
-        public Level AddEnemies();
+        public Level()
+        {
+            Items = new List<AbstractItem>();
+            DoorPosition = new Position(0, 0);
+        }
 
-        public void SetDoorPosition();
+        public Level AddItems(params AbstractItem[] itemsToAdd)
+        {
+            foreach (AbstractItem i in itemsToAdd)
+            {
+                if(i.Position != null)
+                {
+                    Items.Add(i);
+                }
+            }
+            return this;
+        }
 
-        public void RemoveItem(AbstractItem item);
-
-        public void RemoveMob();
+        public void RemoveItem(AbstractItem item) => Items.Remove(item);
     }
 }
