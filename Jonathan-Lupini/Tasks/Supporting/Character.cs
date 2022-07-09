@@ -21,7 +21,7 @@ namespace Jonathan_Lupini.Tasks.Supporting
         }
 
         /// <summary>
-        /// Return the Point representing the position fo the character if
+        /// Return the Point representing the position of the character if
         /// he were to move in the given direction.
         /// </summary>
         public Point DirToPos(Direction dir)
