@@ -1,8 +1,8 @@
 ﻿using System.Drawing;
 using System.Numerics;
-using Jonathan_Lupini.Tasks.Supporting;
+using Jonathan_Lupini.Tasks.Working.Supporting;
 
-namespace Jonathan_Lupini.Tasks
+namespace Jonathan_Lupini.Tasks.Working
 {
     
 
@@ -22,7 +22,7 @@ namespace Jonathan_Lupini.Tasks
             foreach (var tile in tilesBetween)
             {
                 //Console.Write(tile+" ");
-                if (level.Map.IsWall(tile)) return false;
+                if (level.DescentMap.IsWall(tile)) return false;
             }
             return true;
         }

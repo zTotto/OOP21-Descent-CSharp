@@ -1,7 +1,7 @@
 ﻿using System.Drawing;
-using Jonathan_Lupini.Tasks.Supporting;
+using Jonathan_Lupini.Tasks.Working.Supporting;
 
-namespace Jonathan_Lupini.Tasks
+namespace Jonathan_Lupini.Tasks.Working
 {
     /// <summary>
     /// Implementation of Ipathfinding interface with a simple pathfinding algorithm. 
@@ -16,7 +16,7 @@ namespace Jonathan_Lupini.Tasks
             var mobx = mob.Position.X;
             var moby = mob.Position.Y;
             var startPos = mob.Position;
-            var map = level.Map;
+            var map = level.DescentMap;
             Point mobPos = mob.Position;
 
             if (!LineOfSight.IsTargetSeen(level, mob, hero))

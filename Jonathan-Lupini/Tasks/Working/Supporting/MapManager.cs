@@ -1,7 +1,7 @@
 ﻿using System.Drawing;
 using System.Text;
 
-namespace Jonathan_Lupini.Tasks.Supporting
+namespace Jonathan_Lupini.Tasks.Working.Supporting
 {
     /// <summary>
     /// Utility class to load and analyze a map from a text file.
@@ -40,13 +40,13 @@ namespace Jonathan_Lupini.Tasks.Supporting
         /// <summary>
         /// Utility method that prints the map to the console.
         /// </summary>
-        public static void PrintMap(Map map)
+        public static void PrintMap(DescentMap descentMap)
         {
-            for (int y = 0; y < map.Rows; y++)
+            for (int y = 0; y < descentMap.Rows; y++)
             {
-                for (int x = 0; x < map.Columns; x++)
+                for (int x = 0; x < descentMap.Columns; x++)
                 {
-                    Console.Write(map.MapStatus[new Point(x, y)]);
+                    Console.Write(descentMap.MapStatus[new Point(x, y)]);
                 }
 
                 Console.WriteLine(" ");

@@ -6,7 +6,7 @@
     <RootNamespace>Jonathan_Lupini</RootNamespace>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
-    <StartupObject>Jonathan_Lupini.Tasks.Supporting.Controller</StartupObject>
+    <StartupObject>Jonathan_Lupini.Tasks.Working.Supporting.Controller</StartupObject>
   </PropertyGroup>
 
   <ItemGroup>

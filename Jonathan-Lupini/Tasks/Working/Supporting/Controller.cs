@@ -1,6 +1,6 @@
 ﻿using System.Drawing;
 
-namespace Jonathan_Lupini.Tasks.Supporting
+namespace Jonathan_Lupini.Tasks.Working.Supporting
 {   /// <summary>
     /// Class to visually test the simple implementation of the game.
     /// The mob M moves randomly until it sees the hero H, it then tries
@@ -13,7 +13,7 @@ namespace Jonathan_Lupini.Tasks.Supporting
 
         public static void Main(string[] args)
         {
-            var map = new Map(MapPath);
+            var map = new DescentMap(MapPath);
             var level = new Level(map);
             var mob = new Mob(new Point(2, 4), 'M');
             var hero = new Character(new Point(6, 4), 'H');

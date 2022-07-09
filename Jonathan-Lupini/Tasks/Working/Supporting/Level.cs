@@ -1,17 +1,17 @@
 ﻿using System.Drawing;
 
-namespace Jonathan_Lupini.Tasks.Supporting
+namespace Jonathan_Lupini.Tasks.Working.Supporting
 {
     /// <summary>
     /// Class modeling a level of the game.
     /// </summary>
     public class Level
     {
-        public Map Map { get; }
+        public DescentMap DescentMap { get; }
         public List<Character> Characters { get; } = new List<Character>();
-        public Level(Map map)
+        public Level(DescentMap descentMap)
         {
-            Map = map;
+            DescentMap = descentMap;
         }
 
         /// <summary>
@@ -20,7 +20,7 @@ namespace Jonathan_Lupini.Tasks.Supporting
         /// </summary>
         public bool ValidMovement(Character pg, Direction dir)
         {
-            if (Map.IsWall(pg.DirToPos(dir))) return false;
+            if (DescentMap.IsWall(pg.DirToPos(dir))) return false;
             if (IsCharacter(pg.DirToPos(dir))) return false;
             return true;
         }
@@ -38,11 +38,11 @@ namespace Jonathan_Lupini.Tasks.Supporting
         /// </summary>
         public void PrintLevel()
         {
-            for (int y = 0; y < Map.Rows; y++)
+            for (int y = 0; y < DescentMap.Rows; y++)
             {
-                for (int x = 0; x < Map.Columns; x++)
+                for (int x = 0; x < DescentMap.Columns; x++)
                 {
-                    char toPrint = Map.MapStatus[new Point(x, y)];
+                    char toPrint = DescentMap.MapStatus[new Point(x, y)];
                     foreach (var character in Characters)
                     {
                         if (new Point(x, y).Equals(character.Position))
@@ -63,11 +63,11 @@ namespace Jonathan_Lupini.Tasks.Supporting
         /// </summary>
         public void PrintLevelWithSight(Character c1, Character c2)
         {
-            for (int y = 0; y < Map.Rows; y++)
+            for (int y = 0; y < DescentMap.Rows; y++)
             {
-                for (int x = 0; x < Map.Columns; x++)
+                for (int x = 0; x < DescentMap.Columns; x++)
                 {
-                    char toPrint = Map.MapStatus[new Point(x, y)];
+                    char toPrint = DescentMap.MapStatus[new Point(x, y)];
                     foreach (var character in Characters)
                     {
                         if (new Point(x, y).Equals(character.Position))
