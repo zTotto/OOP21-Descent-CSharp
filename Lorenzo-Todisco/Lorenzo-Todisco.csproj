@@ -1,11 +1,12 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <OutputType>Library</OutputType>
+    <OutputType>Exe</OutputType>
     <TargetFramework>net6.0</TargetFramework>
     <RootNamespace>Lorenzo_Todisco</RootNamespace>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
+    <StartupObject>LorenzoTodisco.Test2</StartupObject>
   </PropertyGroup>
 
   <ItemGroup>
