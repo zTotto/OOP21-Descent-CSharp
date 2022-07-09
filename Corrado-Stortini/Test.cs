@@ -78,7 +78,7 @@ namespace CorradoStortini
             Assert.AreEqual(character.Level, 1);
 
             _input.AddCommand(KeyBinding.INCREASES_SPEED, new SpeedUpSkill(10, 10));
-            _input.AddCommand(KeyBinding.HEAL, new HealSkill(10, 20));
+            _input.AddCommand(KeyBinding.HEAL, new HealSkill(20, 10));
 
             //SpeedUp skill
 
@@ -118,14 +118,39 @@ namespace CorradoStortini
 
             //Heal skill
             character.Mana = character.MaxMana;
-            character.Hp = 50;
+            character.Hp = 60;
 
             //The character is at level 2 so it cannot use the Heal skill
             _input.HandleInput(KeyBinding.HEAL).ExecuteCommand(character);
             Assert.AreEqual(character.Mana, character.MaxMana);
-            Assert.AreEqual(character.Hp, 50);
+            Assert.AreEqual(character.Hp, 60);
 
+            character.IncrementLevel(); //Level = 3
+            character.IncrementLevel(); //Level = 4
+            Assert.AreEqual(character.Level, 4);
 
+            //The skill uses 20 mana to heal 10 hp
+            _input.HandleInput(KeyBinding.HEAL).ExecuteCommand(character);
+            Assert.AreEqual(character.Mana, 80); //Mana = 100 - 20
+            Assert.AreEqual(character.Hp, 70); //Hp = 60 + 10
+
+            //Try to use the skill 4 times (Hp are at 70, so the character will have 100 hp at 3rd time)
+            for(int i = 0; i < 4; i++)
+            {
+                _input.HandleInput(KeyBinding.HEAL).ExecuteCommand(character);
+            }
+
+            //With 100 hp, the skill won't be used again
+            Assert.AreEqual(character.Mana, 20);
+            Assert.AreEqual(character.Hp, 100);
+
+            //With 0 mana, the skill won't be used again
+            character.Mana = 0;
+            character.Hp = 60;
+
+            _input.HandleInput(KeyBinding.HEAL).ExecuteCommand(character);
+            Assert.AreEqual(character.Mana, 0);
+            Assert.AreEqual(character.Hp, 60);
         }
     }
 }
