@@ -1,6 +1,6 @@
 ﻿namespace LorenzoTodisco
 {
-    abstract class AbstractConsumableItem : AbstractItem
+    public abstract class AbstractConsumableItem : AbstractItem
     {
         public float Modifier { get; }
         public AbstractConsumableItem(string name, Position position, float modifier) : base(name, position)

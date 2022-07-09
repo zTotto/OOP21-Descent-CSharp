@@ -4,8 +4,9 @@
     {
         private int _weaponIndex = 0;
         private int _hp;
+        private int _mana;
         private bool _isDead;
-        public int MaxHp { get; }
+        public int MaxHp { get; set; }
         public int CurrentHp
         {
             get
@@ -29,6 +30,27 @@
                 }
             }
         }
+        public int MaxMana { get; set; }
+        public int CurrentMana
+        {
+            get => _mana;
+            set
+            {
+                if (value <= 0)
+                {
+                    _mana = 0;
+                }
+                else if (value > MaxMana)
+                {
+                    _mana = MaxMana;
+                }
+                else
+                {
+                    _mana = value;
+                }
+            }
+        }
+        public int Exp { get; set; }
         public int Speed { get; }
         public Position Pos { get; }
         public Inventory Inv { get; } = new Inventory();
