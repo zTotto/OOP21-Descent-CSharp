@@ -1,4 +1,5 @@
 ﻿using System.Drawing;
+using System.Numerics;
 using Jonathan_Lupini.Tasks.Supporting;
 
 namespace Jonathan_Lupini.Tasks
@@ -24,6 +25,17 @@ namespace Jonathan_Lupini.Tasks
                 if (level.Map.IsWall(tile)) return false;
             }
             return true;
+        }
+
+        /// <summary>
+        /// Utility method.
+        /// <returns>A Vector2 of the character's position</returns> 
+        /// </summary>
+        public static Vector2 CharacterVector(Character character)
+        {
+            float x = character.Position.X;
+            float y = character.Position.Y;
+            return new Vector2(x, y);
         }
 
         /// <summary>

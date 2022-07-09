@@ -17,49 +17,102 @@ namespace Jonathan_Lupini.Tasks
             var moby = mob.Position.Y;
             var startPos = mob.Position;
             var map = level.Map;
+            Point mobPos = mob.Position;
 
             if (!LineOfSight.IsTargetSeen(level, mob, hero))
             {
-                Direction dir = IPathfinding.RandomDirection();
-                if (level.ValidMovement(mob, dir)) mob.Position = mob.DirToPos(dir);
+                SimpleMove(mob, level);
             }
 
             else if (herox > mobx)
             {
-                if (level.ValidMovement(mob, Direction.Right))
+                MoveMob(mob, Direction.Right, level);
+                if (heroy > moby && !HasCharacterMoved(mobPos, mob.Position))
                 {
-                    mob.Position = mob.DirToPos(Direction.Right);
+                    MoveMob(mob, Direction.Down, level);
+                    if (!HasCharacterMoved(mobPos, mob.Position))
+                    {
+                        UnstuckMob(mob, level);
+                    }
                 }
-                else if (heroy > moby && level.ValidMovement(mob, Direction.Down))
+                else if (heroy < moby && !HasCharacterMoved(mobPos, mob.Position))
                 {
-                    mob.Position = mob.DirToPos(Direction.Down);
+                    MoveMob(mob, Direction.Up, level);
+                    if (!HasCharacterMoved(mobPos, mob.Position))
+                    {
+                        UnstuckMob(mob, level);
+                    }
                 }
-                else UnstuckMob(mob, level);
+                else if (!HasCharacterMoved(mobPos, mob.Position))
+                {
+                    UnstuckMob(mob, level);
+                }
             }
             else if (herox < mobx)
             {
-                if (level.ValidMovement(mob, Direction.Left))
+                MoveMob(mob, Direction.Left, level);
+                if (heroy > moby && !HasCharacterMoved(mobPos, mob.Position))
                 {
-                    mob.Position = mob.DirToPos(Direction.Left);
+                    MoveMob(mob, Direction.Down, level);
+                    if (!HasCharacterMoved(mobPos, mob.Position))
+                    {
+                        UnstuckMob(mob, level);
+                    }
                 }
-                else if (heroy > moby && level.ValidMovement(mob, Direction.Down))
+                else if (heroy < moby && !HasCharacterMoved(mobPos, mob.Position))
                 {
-                    mob.Position = mob.DirToPos(Direction.Down);
+                    MoveMob(mob, Direction.Up, level);
+                    if (!HasCharacterMoved(mobPos, mob.Position))
+                    {
+                        UnstuckMob(mob, level);
+                    }
                 }
-                else UnstuckMob(mob, level);
+                else if (!HasCharacterMoved(mobPos, mob.Position))
+                {
+                    UnstuckMob(mob, level);
+                }
             }
             else
             {
-                if (heroy > moby && level.ValidMovement(mob, Direction.Down))
+                if (heroy > moby)
                 {
-                    mob.Position = mob.DirToPos(Direction.Down);
+                    MoveMob(mob, Direction.Down, level);
                 }
-                else if (level.ValidMovement(mob, Direction.Up))
+                else if (heroy < moby)
                 {
-                    mob.Position = mob.DirToPos(Direction.Up);
+                    MoveMob(mob, Direction.Up, level);
                 }
-                else UnstuckMob(mob, level);
+
+                if (!HasCharacterMoved(mobPos, mob.Position))
+                {
+                    UnstuckMob(mob, level);
+                }
             }
+        }
+
+        /// <summary>
+        /// Moves the mob towards a random direction.
+        /// </summary>
+        void SimpleMove(Mob mob, Level level)
+        {
+            Direction dir = IPathfinding.RandomDirection();
+            if (level.ValidMovement(mob, dir)) mob.Position = mob.DirToPos(dir);
+        }
+
+        /// <summary>
+        /// Returns true if the 2 positions are equivalent, false otherwise.
+        /// </summary>
+        bool HasCharacterMoved(Point pos1, Point pos2)
+        {
+            return !pos1.Equals(pos2);
+        }
+
+        /// <summary>
+        /// If the movement is valid moves the mob towards a given direction.
+        /// </summary>
+        void MoveMob(Mob mob, Direction dir, Level level)
+        {
+            if (level.ValidMovement(mob, dir)) mob.Position = mob.DirToPos(dir);
         }
 
         /// <summary>
