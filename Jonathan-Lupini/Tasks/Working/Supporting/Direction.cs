@@ -1,4 +1,4 @@
-﻿namespace Jonathan_Lupini.Tasks.Supporting
+﻿namespace Jonathan_Lupini.Tasks.Working.Supporting
 {
     /// <summary>
     /// Enumeration of possible movement directions in a 2d world.

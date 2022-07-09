@@ -1,17 +1,17 @@
 ﻿using System.Drawing;
 
-namespace Jonathan_Lupini.Tasks.Supporting
+namespace Jonathan_Lupini.Tasks.Working.Supporting
 {   /// <summary>
     /// Class that models a basic rpg map.
     /// </summary>
-    public class Map
+    public class DescentMap
     {
         private readonly string _mapPath;
         public int Columns { get; }
         public int Rows { get; }
         public Dictionary<Point, char> MapStatus { get; }
 
-        public Map(string path)
+        public DescentMap(string path)
         {
             _mapPath = path;
             var (width, height) = MapManager.MapSize(_mapPath);

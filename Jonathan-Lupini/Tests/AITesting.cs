@@ -1,6 +1,6 @@
 ﻿using System.Drawing;
-using Jonathan_Lupini.Tasks;
-using Jonathan_Lupini.Tasks.Supporting;
+using Jonathan_Lupini.Tasks.Working;
+using Jonathan_Lupini.Tasks.Working.Supporting;
 using NUnit.Framework;
 
 namespace Jonathan_Lupini.Tests
@@ -10,7 +10,7 @@ namespace Jonathan_Lupini.Tests
     {
         private const string MapPath =
             "testMap.txt";
-        private Map _map = null!;
+        private DescentMap _map = null!;
         private Level _level = null!;
         private Mob _mob = null!;
         private Character _hero = null!;
@@ -18,7 +18,7 @@ namespace Jonathan_Lupini.Tests
         [SetUp]
         public void Setup()
         {
-            _map = new Map(MapPath);
+            _map = new DescentMap(MapPath);
             _level = new Level(_map);
             _mob = new Mob(new Point(2, 4), 'M');
             _hero = new Character(new Point(6, 4), 'H');

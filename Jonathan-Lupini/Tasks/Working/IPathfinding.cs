@@ -1,6 +1,6 @@
-﻿using Jonathan_Lupini.Tasks.Supporting;
+﻿using Jonathan_Lupini.Tasks.Working.Supporting;
 
-namespace Jonathan_Lupini.Tasks
+namespace Jonathan_Lupini.Tasks.Working
 {
     /// <summary>
     /// Interface for monster's pathfinding

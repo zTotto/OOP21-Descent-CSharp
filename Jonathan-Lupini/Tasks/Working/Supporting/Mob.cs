@@ -1,6 +1,6 @@
 ﻿using System.Drawing;
 
-namespace Jonathan_Lupini.Tasks.Supporting
+namespace Jonathan_Lupini.Tasks.Working.Supporting
 {
     /// <summary>
     /// Class modeling a Mob, it extends the Character class.
