@@ -139,6 +139,11 @@
             UsePotionByType("Health");
         }
 
+        public void UseManaPotion()
+        {
+            UsePotionByType("Mana");
+        }
+
         public void Move(Dir dir)
         {
             if (!IsDead)
