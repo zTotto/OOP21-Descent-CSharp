@@ -171,7 +171,6 @@ namespace CorradoStortini
             Assert.AreEqual(_character.NumHealthPotion, 4);
             Assert.AreEqual(_character.NumManaPotion, 4);
 
-
             //Health potion
 
             _input.HandleInput(KeyBinding.USE_HEALTH_POTION).ExecuteCommand(_character);
@@ -197,8 +196,6 @@ namespace CorradoStortini
 
             _input.HandleInput(KeyBinding.USE_MANA_POTION).ExecuteCommand(_character);
             Assert.AreEqual(_character.NumManaPotion, 0);
-
-
         }
 
         private class UseHealthPotion : ICommand

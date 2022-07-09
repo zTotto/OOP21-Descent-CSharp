@@ -186,6 +186,9 @@ namespace CorradoStortini
         #endregion
 
         #region Potions
+        /// <summary>
+        /// If the character has health potions, use one of them
+        /// </summary>
         public void UseHealthPotion()
         {
             if(NumHealthPotion > 0)
@@ -194,6 +197,9 @@ namespace CorradoStortini
             }
         }
 
+        /// <summary>
+        /// If the character has mana potions, use one of them
+        /// </summary>
         public void UseManaPotion()
         {
             if (NumManaPotion > 0)
