@@ -10,10 +10,10 @@ namespace Jonathan_Lupini.Tests
     {
         private const string MapPath =
             "testMap.txt";
-        private Map _map;
-        private Level _level;
-        private Mob _mob;
-        private Character _hero;
+        private Map _map = null!;
+        private Level _level = null!;
+        private Mob _mob = null!;
+        private Character _hero = null!;
 
         [SetUp]
         public void Setup()
