@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Francesco_Carlucci
+﻿namespace Francesco_Carlucci
 {
     public class LevelsList
     {
@@ -21,14 +15,7 @@ namespace Francesco_Carlucci
 
         public bool HasNextLevel() => _counter < Levels.Count - 1;
 
-        public Level GetNextLevel()
-        {
-            if (HasNextLevel())
-            {
-                return Levels[++_counter];
-            }
-            throw new NotSupportedException();
-        }
+        public Level GetNextLevel() => HasNextLevel() ? Levels[++_counter] : throw new NotSupportedException();
 
         public bool IsGameOver() => !HasNextLevel();
 
